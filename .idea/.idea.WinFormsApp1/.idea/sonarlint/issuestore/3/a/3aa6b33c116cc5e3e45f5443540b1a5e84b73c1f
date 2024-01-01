@@ -1,10 +1,0 @@
-
-fcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(ÚãÙùÿÿÿÿ
-fcsharpsquid:S1104'"DMake this field 'private' and encapsulate it in a 'public' property.(ƒÎÏÏüÿÿÿÿ
-fcsharpsquid:S11042"DMake this field 'private' and encapsulate it in a 'public' property.( ­¤àøÿÿÿÿ
-ƒcsharpsquid:S2386"aUse an immutable collection or reduce the accessibility of the public static field 'keyCTRLDict'.(ÚãÙùÿÿÿÿ
-‚csharpsquid:S2386'"`Use an immutable collection or reduce the accessibility of the public static field 'keyALTDict'.(ƒÎÏÏüÿÿÿÿ
-ƒcsharpsquid:S23862"aUse an immutable collection or reduce the accessibility of the public static field 'hashKeyDict'.( ­¤àøÿÿÿÿ
-jcsharpsquid:S2223"HChange the visibility of 'keyCTRLDict' or make it 'const' or 'readonly'.(ÚãÙùÿÿÿÿ
-icsharpsquid:S2223'"GChange the visibility of 'keyALTDict' or make it 'const' or 'readonly'.(ƒÎÏÏüÿÿÿÿ
-jcsharpsquid:S22232"HChange the visibility of 'hashKeyDict' or make it 'const' or 'readonly'.( ­¤àøÿÿÿÿ

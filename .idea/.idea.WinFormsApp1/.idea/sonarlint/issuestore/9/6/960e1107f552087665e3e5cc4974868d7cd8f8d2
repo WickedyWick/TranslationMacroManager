@@ -1,6 +1,0 @@
-
-lcsharpsquid:S1118
-"OAdd a 'protected' constructor or the 'static' keyword to the class declaration.(πι¨ς
-acsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(³ουΞ
-jcsharpsquid:S2223"MChange the visibility of 'allowshowdisplay' or make it 'const' or 'readonly'.(³ουΞ
-;csharpsquid:S125"Remove this commented out code.(ί”…
