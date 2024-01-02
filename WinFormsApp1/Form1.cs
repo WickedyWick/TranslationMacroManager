@@ -16,6 +16,7 @@ namespace WinFormsApp1
             notifyIcon.Visible = true;
             notifyIcon.ContextMenuStrip = new ContextMenuStrip();
             notifyIcon.ContextMenuStrip.Items.Add(new ToolStripMenuItem("Exit", null, SystemTrayExitClick));
+            ConfigLoader.LoadConfig();
         }
 
         private void Form1_Load(object sender, EventArgs e)

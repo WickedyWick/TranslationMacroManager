@@ -6,16 +6,13 @@ namespace WinFormsApp1
 {
     public static class APIHelper
     {
-        private static string key = "";
+        private static Config _cfg;
         static APIHelper()
         {
-            key = ConfigurationManager.AppSettings["key"] ?? "";
-            if (string.IsNullOrEmpty(key))
-                MessageBox.Show("No API key found!");
+            _cfg = ConfigLoader.LoadConfig();
         }
         
-        private static readonly string endpoint = "https://api.cognitive.microsofttranslator.com/";
-        private static readonly string location = "westeurope";
+        
         private static readonly string route = "/translate?api-version=3.0&from=en&to=zh-Hant";
         private static bool requestOngoing = false;
         public static async Task<string> Translate(string inputText)
@@ -32,10 +29,10 @@ namespace WinFormsApp1
             {
                 client.Timeout = TimeSpan.FromSeconds(20);
                 request.Method = HttpMethod.Post;
-                request.RequestUri = new Uri(endpoint + route);
+                request.RequestUri = new Uri(_cfg.Endpoint + route);
                 request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
-                request.Headers.Add("Ocp-Apim-Subscription-Key", key);
-                request.Headers.Add("Ocp-Apim-Subscription-Region", location);
+                request.Headers.Add("Ocp-Apim-Subscription-Key", _cfg.ApiKey);
+                request.Headers.Add("Ocp-Apim-Subscription-Region", _cfg.Location);
 
                 HttpResponseMessage response = await client.SendAsync(request).ConfigureAwait(false);
                 var result = await response.Content.ReadFromJsonAsync<TranslationDto[]>();
