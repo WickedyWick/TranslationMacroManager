@@ -72,6 +72,7 @@
             ddlFrom.Name = "ddlFrom";
             ddlFrom.Size = new Size(131, 23);
             ddlFrom.TabIndex = 2;
+            ddlFrom.SelectedIndexChanged += languageChanged;
             // 
             // label1
             // 
@@ -89,6 +90,7 @@
             ddlTo.Name = "ddlTo";
             ddlTo.Size = new Size(131, 23);
             ddlTo.TabIndex = 4;
+            ddlTo.SelectedIndexChanged += languageChanged;
             // 
             // label2
             // 

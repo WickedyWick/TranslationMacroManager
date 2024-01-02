@@ -16,7 +16,7 @@ namespace WinFormsApp1
             notifyIcon.Visible = true;
             notifyIcon.ContextMenuStrip = new ContextMenuStrip();
             notifyIcon.ContextMenuStrip.Items.Add(new ToolStripMenuItem("Exit", null, SystemTrayExitClick));
-            ConfigLoader.SetupComboBoxesValues(ddlFrom, ddlTo);
+            ConfigManager.SetupComboBoxesValues(ddlFrom, ddlTo);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -89,6 +89,41 @@ namespace WinFormsApp1
         protected override void SetVisibleCore(bool value)
         {
             base.SetVisibleCore(Actions.allowshowdisplay ? value : Actions.allowshowdisplay);
+        }
+
+        private void languageChanged(object sender, EventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+            if (ddlFrom.SelectedIndex == ddlTo.SelectedIndex)
+            {
+                MessageBox.Show("From and To languages can't be same!", "Error setting language!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (cb.Name == "ddlFrom")
+                    ddlFrom.SelectedIndex = ddlFrom.FindStringExact(ConfigManager.langCodeMap[Config.FromLangCode]);
+                else
+                    ddlTo.SelectedIndex = ddlTo.FindStringExact(ConfigManager.langCodeMap[Config.ToLangCode]);
+                return;
+            }
+            int iF = ddlFrom.SelectedIndex;
+            int iT = ddlTo.SelectedIndex;
+            if (Config.RememberLanguages && iF > -1 && iT > -1)
+            {
+
+                string fromHuman = ddlFrom.Items[ddlFrom.SelectedIndex].ToString();
+                string toHuman = ddlTo.Items[ddlTo.SelectedIndex].ToString();
+                string fromCode = "";
+                string toCode = "";
+                // can make reversed dictionary or use this, set is small so perf wise doesn't matter
+                foreach (KeyValuePair<string, string> kvp in ConfigManager.langCodeMap)
+                {
+                    if (kvp.Value == fromHuman)
+                        fromCode = kvp.Key;
+                    else if (kvp.Value == toHuman)
+                        toCode = kvp.Key;
+                }
+
+                ConfigManager.SaveLangugageToConfig(fromCode, toCode);
+            }
+                
         }
     }
 }

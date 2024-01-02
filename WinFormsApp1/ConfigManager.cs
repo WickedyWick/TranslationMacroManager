@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WinFormsApp1
 {
-    public static class ConfigLoader
+    public static class ConfigManager
     {
         public static Dictionary<string, string> langCodeMap = new Dictionary<string, string>()
         {
@@ -193,6 +193,14 @@ namespace WinFormsApp1
                         case "endpoint":
                             Config.Endpoint = val;
                             break;
+                        case "fromlangecode":
+                            if (langCodeMap.ContainsKey(val))
+                                Config.FromLangCode = val;
+                            break;
+                        case "tolangcode":
+                            if (langCodeMap.ContainsKey(val))
+                                Config.ToLangCode = val;
+                            break;
                         default:
                             break;
                     }
@@ -223,6 +231,15 @@ namespace WinFormsApp1
                     Environment.Exit(Environment.ExitCode);
                 }
 
+                // default to is chinese
+                if (string.IsNullOrEmpty(Config.ToLangCode))
+                    Config.ToLangCode = "zh-Hant";
+                // default from is english
+                if (string.IsNullOrEmpty(Config.FromLangCode))
+                    Config.FromLangCode = "en";
+
+                // For now have it perma true
+                Config.RememberLanguages = true;
                 return;
                 
             } catch (Exception ex)
@@ -243,6 +260,78 @@ namespace WinFormsApp1
             string[] vals = langCodeMap.Values.ToArray();
             from.Items.AddRange(vals);
             to.Items.AddRange(vals);
+            from.SelectedIndex = from.FindStringExact(langCodeMap[Config.FromLangCode]);
+            to.SelectedIndex = to.FindStringExact(langCodeMap[Config.ToLangCode]);
+        }
+        
+        public static void SaveLangugageToConfig(string from, string to)
+        {
+            try
+            {
+                string path = Path.Combine(Environment.CurrentDirectory, "settings.txt");
+                using StreamReader sr = new StreamReader(path);
+                string? line = sr.ReadLine();
+                List<string> lines = new List<string>();
+                while (line != null)
+                {
+                    if (line == "" || line == "\n\r" || line == "\r\n")
+                    {
+                        line = sr.ReadLine();
+                        continue;
+                    }
+
+                    string[] args = line.Trim().Split('=');
+                    if (args.Length != 2)
+                    {
+                        MessageBox.Show("Incorect settings file format, refer to README!", "Error during reading settings file!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Environment.Exit(Environment.ExitCode);
+                        return;
+                    }
+
+                    string key = args[0].Trim().ToLower();
+                    string val = args[1].Trim();
+                    if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(val))
+                    {
+                        line = sr.ReadLine();
+                        continue;
+                    }
+
+                    switch (key)
+                    {
+                        case "location":
+                        case "apikey":
+                        case "endpoint":
+                            lines.Add(line.Trim());
+                            break;
+                        default:
+                            break;
+                    }
+                    line = sr.ReadLine();
+                }
+                sr.Close();
+                lines.Add($"FromLangCode={from}");
+                lines.Add($"ToLangCode={to}");
+                using (StreamWriter sw = new StreamWriter("settings.txt", false))
+                {
+                    foreach (string setting in lines)
+                    {
+                        sw.WriteLine(setting);
+                    }
+                }  
+                return;
+
+            }
+            catch (Exception ex)
+            {
+                string msg = ex switch
+                {
+                    (FileNotFoundException or DirectoryNotFoundException) => "Settings file missing! Make sure to settings.txt file in root folder!",
+                    _ => "Error while reading settings! Please make sure settings.txt is setup correctly!"
+                };
+                MessageBox.Show(msg, "Error during reading settings file!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Environment.Exit(Environment.ExitCode);
+                return;
+            }
         }
     }
     public static class Config
@@ -252,6 +341,7 @@ namespace WinFormsApp1
         public static string ApiKey { get; set; }
         public static string FromLangCode { get; set; }
         public static string ToLangCode { get; set; }
+        public static bool RememberLanguages { get; set; }
     }
     
     public enum ComboBoxType
