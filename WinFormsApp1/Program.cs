@@ -1,5 +1,6 @@
+using System.Diagnostics;
 using System.Resources;
-using WinFormsApp1.Properties;
+using MacroManager.Properties;
 
 namespace WinFormsApp1
 {
@@ -13,10 +14,27 @@ namespace WinFormsApp1
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
+
+            CheckIfAPplicationAlreadyRunning();
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
 
         }
 
+        static void CheckIfAPplicationAlreadyRunning()
+        {
+            int count = 0;
+            foreach (Process process in Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName))
+            {
+                var p = process;
+                count++;
+                if (count > 1)
+                {
+                    DialogResult dr = MessageBox.Show("Another MacroManager instance already running! You can only run one instance at the time!", "Instance already running!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Environment.Exit(0);
+                }
+            }
+            
+        }
     }
 }
