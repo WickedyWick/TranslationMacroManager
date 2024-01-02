@@ -52,7 +52,7 @@ namespace WinFormsApp1
                         case "location":
                             cfg.Location = val;
                             break;
-                        case "apiKey":
+                        case "apikey":
                             cfg.ApiKey = val;
                             break;
                         case "endpoint":
@@ -61,14 +61,14 @@ namespace WinFormsApp1
                         default:
                             break;
                     }
-
+                    line = sr.ReadLine();
                 }
                 bool correctlyLoaded = true;
                 StringBuilder sb = new StringBuilder("Error during loading config. Missing fields: ");
                 if (string.IsNullOrEmpty(cfg.ApiKey))
                 {
                     correctlyLoaded = false;
-                    sb.Append("Api Key, ");
+                    sb.Append("ApiKey, ");
                 }
                 if (string.IsNullOrEmpty(cfg.Endpoint))
                 {
