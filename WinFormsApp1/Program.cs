@@ -13,9 +13,9 @@ namespace WinFormsApp1
         static void Main()
         {
             // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-
+            // see https://aka.ms/applicationconfiguration
             CheckIfAPplicationAlreadyRunning();
+            ConfigLoader.LoadConfig();
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
 

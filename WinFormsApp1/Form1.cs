@@ -16,7 +16,7 @@ namespace WinFormsApp1
             notifyIcon.Visible = true;
             notifyIcon.ContextMenuStrip = new ContextMenuStrip();
             notifyIcon.ContextMenuStrip.Items.Add(new ToolStripMenuItem("Exit", null, SystemTrayExitClick));
-            ConfigLoader.LoadConfig();
+            ConfigLoader.SetupComboBoxesValues(ddlFrom, ddlTo);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -34,7 +34,7 @@ namespace WinFormsApp1
             bool _ = hashCode switch
             {
                 > 2000 => await HandleALT(hashCode),
-                (>1000) and (< 2000) => await HandleCTRL(hashCode),
+                (> 1000) and (< 2000) => await HandleCTRL(hashCode),
                 _ => false
             };
         }

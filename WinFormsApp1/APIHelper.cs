@@ -5,14 +5,7 @@ using System.Configuration;
 namespace WinFormsApp1
 {
     public static class APIHelper
-    {
-        private static Config _cfg;
-        static APIHelper()
-        {
-            _cfg = ConfigLoader.LoadConfig();
-        }
-        
-        
+    { 
         private static readonly string route = "/translate?api-version=3.0&from=en&to=zh-Hant";
         private static bool requestOngoing = false;
         public static async Task<string> Translate(string inputText)
@@ -29,10 +22,10 @@ namespace WinFormsApp1
             {
                 client.Timeout = TimeSpan.FromSeconds(20);
                 request.Method = HttpMethod.Post;
-                request.RequestUri = new Uri(_cfg.Endpoint + route);
+                request.RequestUri = new Uri(Config.Endpoint + route);
                 request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
-                request.Headers.Add("Ocp-Apim-Subscription-Key", _cfg.ApiKey);
-                request.Headers.Add("Ocp-Apim-Subscription-Region", _cfg.Location);
+                request.Headers.Add("Ocp-Apim-Subscription-Key", Config.ApiKey);
+                request.Headers.Add("Ocp-Apim-Subscription-Region", Config.Location);
 
                 HttpResponseMessage response = await client.SendAsync(request).ConfigureAwait(false);
                 var result = await response.Content.ReadFromJsonAsync<TranslationDto[]>();

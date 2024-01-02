@@ -33,16 +33,20 @@
             txbMain = new TextBox();
             btnHide = new Button();
             notifyIcon = new NotifyIcon(components);
+            ddlFrom = new ComboBox();
+            label1 = new Label();
+            ddlTo = new ComboBox();
+            label2 = new Label();
             SuspendLayout();
             // 
             // txbMain
             // 
-            txbMain.Location = new Point(12, 37);
+            txbMain.Location = new Point(12, 120);
             txbMain.Multiline = true;
             txbMain.Name = "txbMain";
             txbMain.ReadOnly = true;
             txbMain.ScrollBars = ScrollBars.Vertical;
-            txbMain.Size = new Size(342, 371);
+            txbMain.Size = new Size(342, 288);
             txbMain.TabIndex = 0;
             // 
             // btnHide
@@ -61,11 +65,49 @@
             notifyIcon.Text = "notifyIcon1";
             notifyIcon.Visible = true;
             // 
+            // ddlFrom
+            // 
+            ddlFrom.FormattingEnabled = true;
+            ddlFrom.Location = new Point(12, 53);
+            ddlFrom.Name = "ddlFrom";
+            ddlFrom.Size = new Size(131, 23);
+            ddlFrom.TabIndex = 2;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(12, 34);
+            label1.Name = "label1";
+            label1.Size = new Size(41, 15);
+            label1.TabIndex = 3;
+            label1.Text = "From :";
+            // 
+            // ddlTo
+            // 
+            ddlTo.FormattingEnabled = true;
+            ddlTo.Location = new Point(223, 53);
+            ddlTo.Name = "ddlTo";
+            ddlTo.Size = new Size(131, 23);
+            ddlTo.TabIndex = 4;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(223, 35);
+            label2.Name = "label2";
+            label2.Size = new Size(25, 15);
+            label2.TabIndex = 5;
+            label2.Text = "To :";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(366, 420);
+            Controls.Add(label2);
+            Controls.Add(ddlTo);
+            Controls.Add(label1);
+            Controls.Add(ddlFrom);
             Controls.Add(btnHide);
             Controls.Add(txbMain);
             Name = "Form1";
@@ -81,5 +123,9 @@
         private TextBox txbMain;
         private Button btnHide;
         private NotifyIcon notifyIcon;
+        private ComboBox ddlFrom;
+        private Label label1;
+        private ComboBox ddlTo;
+        private Label label2;
     }
 }
