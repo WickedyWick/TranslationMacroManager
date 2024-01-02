@@ -193,7 +193,7 @@ namespace WinFormsApp1
                         case "endpoint":
                             Config.Endpoint = val;
                             break;
-                        case "fromlangecode":
+                        case "fromlangcode":
                             if (langCodeMap.ContainsKey(val))
                                 Config.FromLangCode = val;
                             break;

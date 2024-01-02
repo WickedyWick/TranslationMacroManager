@@ -105,9 +105,8 @@ namespace WinFormsApp1
             }
             int iF = ddlFrom.SelectedIndex;
             int iT = ddlTo.SelectedIndex;
-            if (Config.RememberLanguages && iF > -1 && iT > -1)
+            if (iF > -1 && iT > -1)
             {
-
                 string fromHuman = ddlFrom.Items[ddlFrom.SelectedIndex].ToString();
                 string toHuman = ddlTo.Items[ddlTo.SelectedIndex].ToString();
                 string fromCode = "";
@@ -120,10 +119,13 @@ namespace WinFormsApp1
                     else if (kvp.Value == toHuman)
                         toCode = kvp.Key;
                 }
-
-                ConfigManager.SaveLangugageToConfig(fromCode, toCode);
-            }
-                
+                if (Config.RememberLanguages)
+                {
+                    ConfigManager.SaveLangugageToConfig(fromCode, toCode);
+                }
+                Config.FromLangCode = fromCode;
+                Config.ToLangCode = toCode;
+            }        
         }
     }
 }
