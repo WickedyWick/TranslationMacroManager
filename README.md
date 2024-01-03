@@ -38,7 +38,7 @@ There is only one setup prerequisite and that is to have Free Translator Azure S
 - Create Azure Portal Account on their [website](https://azure.microsoft.com/en-us/get-started/azure-portal)
 - Create Translator Resource following [guide](https://learn.microsoft.com/en-us/azure/ai-services/translator/create-translator-resource)
 - Insert API key, Location and Endpoint values in the settings file
-![Example](https://github.com/WickedyWick/TranslationMacroManager/blob/main/image.png?raw=true)
+![Example](https://github.com/WickedyWick/TranslationMacroManager/blob/master/image.png?raw=true)
 
 ## Settings file
 Application requires settings file
