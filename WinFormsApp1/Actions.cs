@@ -47,9 +47,11 @@ namespace WinFormsApp1
             SendKeys.SendWait("^{a}");
             SendKeys.SendWait("^{c}");
             string text = Clipboard.GetText();
-            if (text == string.Empty)
+            if (string.IsNullOrEmpty(text))
                 return false;
-            string translated = await APIHelper.Translate(text);
+            string? translated = await APIHelper.Translate(text);
+            if (string.IsNullOrEmpty(translated)) 
+                return false;
             Clipboard.SetText(translated);
             SendKeys.SendWait("^{v}");
             return true;
