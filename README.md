@@ -32,6 +32,9 @@ Currently there are 9 presets keybinded from CTRL + NumPad1 to CTRL + NumPad9 th
 | CTRL + NumPad9 | *Goodbye* preset in Chinese |
 
 
+## How to run
+You can compile application yourself using Visual Studio 2022 or higher, or run compiled executable on your own risk (Executable folder)
+
 ## Setup
 There is only one setup prerequisite and that is to have Free Translator Azure Service *I know, it's bothersome but there is no good open source translation api*
 
