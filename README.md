@@ -38,7 +38,7 @@ You can compile application yourself using Visual Studio 2022 or higher, or run 
 If you want to program start on system startup easiest way would be to put executable and settings file in startup folder. You can open startup folder by pressing WINDOWS KEY + R, typing *shell:startup* and pressing OK
 
 ## Setup
-There is only one setup prerequisite and that is to have Free Translator Azure Service *I know, it's bothersome but there is no good open source translation api*
+There is only one setup prerequisite and that is to have Free Translator Azure Service *I know, it's bothersome but there is no other good open source translation api that i found*
 
 - Create Azure Portal Account on their [website](https://azure.microsoft.com/en-us/get-started/azure-portal)
 - Create Translator Resource following [guide](https://learn.microsoft.com/en-us/azure/ai-services/translator/create-translator-resource)
