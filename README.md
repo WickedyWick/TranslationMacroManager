@@ -35,6 +35,8 @@ Currently there are 9 presets keybinded from CTRL + NumPad1 to CTRL + NumPad9 th
 ## How to run
 You can compile application yourself using Visual Studio 2022 or higher, or run compiled executable on your own risk (Executable folder)
 
+If you want to program start on system startup easiest way would be to put executable and settings file in startup folder. You can open startup folder by pressing WINDOWS KEY + R, typing *shell:startup* and pressing OK
+
 ## Setup
 There is only one setup prerequisite and that is to have Free Translator Azure Service *I know, it's bothersome but there is no good open source translation api*
 
