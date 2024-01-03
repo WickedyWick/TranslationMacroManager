@@ -12,6 +12,7 @@ namespace WinFormsApp1
         // Predefined CTRL functionalities
         public static Dictionary<Keys, Word> keyCTRLDict = new Dictionary<Keys, Word>()
         {
+            { Keys.NumPad0, new Word { Chinese ="func", English = "func"} },
             // Hi
             { Keys.NumPad1, new Word { Chinese = "嗨", English = "Hi" } },
             // Hi/Hello
